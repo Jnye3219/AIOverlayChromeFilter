@@ -1,0 +1,11 @@
+package com.mistress.overlay
+
+import android.graphics.Bitmap
+
+class NudityDetector {
+    fun isNude(image: Bitmap): Boolean {
+        // Placeholder for ML model
+        // Return true if nudity detected, false otherwise
+        return false
+    }
+}
