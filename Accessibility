@@ -1,0 +1,38 @@
+package com.mistress.overlay
+
+import android.accessibilityservice.AccessibilityService
+import android.view.accessibility.AccessibilityEvent
+import android.view.View
+import android.view.WindowManager
+import android.graphics.PixelFormat
+import android.widget.FrameLayout
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+
+class OverlayService : AccessibilityService() {
+
+    private lateinit var overlayView: FrameLayout
+
+    override fun onServiceConnected() {
+        super.onServiceConnected()
+        overlayView = FrameLayout(this)
+        overlayView.setBackgroundColor(Color.TRANSPARENT)
+        val params = WindowManager.LayoutParams(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+            PixelFormat.TRANSLUCENT
+        )
+        val wm = getSystemService(WINDOW_SERVICE) as WindowManager
+        wm.addView(overlayView, params)
+    }
+
+    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
+        if (event?.packageName.toString() == "com.android.chrome") {
+            // Here we will later integrate nudity detection and add blur overlays
+        }
+    }
+
+    override fun onInterrupt() {}
+}
