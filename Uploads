@@ -1,0 +1,5 @@
+MainActivity.kt → com/mistress/overlay/
+OverlayService.kt → com/mistress/overlay/
+NudityDetector.kt → com/mistress/overlay/
+activity_main.xml → res/layout/
+build.gradle → root of app module
