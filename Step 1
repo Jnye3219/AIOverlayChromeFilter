@@ -1,0 +1,29 @@
+package com.mistress.overlay
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+
+class MainActivity : AppCompatActivity() {
+    private val PIN = "1234" // Mistress sets this later
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val pinInput = findViewById<EditText>(R.id.pin_input)
+        val unlockButton = findViewById<Button>(R.id.unlock_button)
+
+        unlockButton.setOnClickListener {
+            val entered = pinInput.text.toString()
+            if (entered == PIN) {
+                Toast.makeText(this, "Access granted, slave.", Toast.LENGTH_SHORT).show()
+                // Show settings UI here
+            } else {
+                Toast.makeText(this, "Incorrect PIN. Obedience required.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
